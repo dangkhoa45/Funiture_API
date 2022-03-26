@@ -12,7 +12,9 @@ import {
   Public,
 } from './auth/jwt-auth.guard';
 import { LocalAuthGuard } from './auth/local-auth.guard';
-
+import { ApiTags } from '@nestjs/swagger';
+  
+@ApiTags('Login & Profile')
 @Controller()
 export class AppController {
 

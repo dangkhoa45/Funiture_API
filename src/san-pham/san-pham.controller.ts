@@ -13,8 +13,10 @@ import {
 import { CreateSanPhamDto } from './dto/create-san-pham.dto';
 import { UpdateSanPhamDto } from './dto/update-san-pham.dto';
 import { SanPhamService } from './san-pham.service';
-
-@Controller('san-pham')
+import { ApiTags } from '@nestjs/swagger';
+  
+@ApiTags('San Pham')
+@Controller('/san-pham')
 export class SanPhamController {
   constructor(private readonly sanPhamService: SanPhamService) {}
 

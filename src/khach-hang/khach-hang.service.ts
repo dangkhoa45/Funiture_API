@@ -30,12 +30,16 @@ export class KhachHangService {
     return this.khachHangModel.findOne({_id});
   }
 
+  async getOne(email): Promise<KhachHangs> {
+    return await this.khachHangModel.findOne({ email }).exec();
+}
+
   findByUsername(input: string){
     return this.khachHangModel.findOne({$or:[{username: input},{email:input}]});
   }
 
-  update(id_KH: string, updateKhachHangDto: UpdateKhachHangDto) {
-    return this.khachHangModel.findByIdAndUpdate({id_KH}, updateKhachHangDto);
+  update(_id: string, updateKhachHangDto: UpdateKhachHangDto) {
+    return this.khachHangModel.findByIdAndUpdate(_id, updateKhachHangDto);
   }
 
   remove(_id: string) {

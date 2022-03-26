@@ -14,7 +14,9 @@ import {
 import { CreateKhachHangDto } from './dto/create-khach-hang.dto';
 import { UpdateKhachHangDto } from './dto/update-khach-hang.dto';
 import { KhachHangService } from './khach-hang.service';
-
+import { ApiTags } from '@nestjs/swagger';
+  
+@ApiTags('Khach Hang')
 @Controller('/khach-hang')
 export class KhachHangController {
   constructor(private readonly khachHangService: KhachHangService) {}

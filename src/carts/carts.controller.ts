@@ -12,7 +12,9 @@ import {
 } from '@nestjs/common';
 import { CartsService } from './carts.service';
 import { CreateCartsDto } from './dto/create-carts.dto';
-
+import { ApiTags } from '@nestjs/swagger';
+  
+@ApiTags('Carts')
 @Controller('/Carts')
 export class CartsController {
   constructor(private readonly cartService: CartsService) {}
