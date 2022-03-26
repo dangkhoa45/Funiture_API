@@ -41,4 +41,5 @@ export class KhachHangService {
   remove(_id: string) {
     return this.khachHangModel.findByIdAndRemove({_id});
   }
+  
 }

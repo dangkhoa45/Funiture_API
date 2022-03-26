@@ -15,7 +15,7 @@ import { CreateKhachHangDto } from './dto/create-khach-hang.dto';
 import { UpdateKhachHangDto } from './dto/update-khach-hang.dto';
 import { KhachHangService } from './khach-hang.service';
 
-@Controller('khach-hang')
+@Controller('/khach-hang')
 export class KhachHangController {
   constructor(private readonly khachHangService: KhachHangService) {}
 
@@ -49,5 +49,4 @@ export class KhachHangController {
   async getEmail(@Query('email') username : string){
     return this.khachHangService.findByUsername(username);
   }
-
 }

@@ -6,3 +6,4 @@ export class CreateKhachHangDto {
     phone: string;
     avt_KH: string;
 }
+

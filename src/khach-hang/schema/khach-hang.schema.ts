@@ -11,10 +11,6 @@ export type KhachHang = any;
 
 @Schema()
 export class KhachHangs extends Document {
-
-    // @Prop()
-    // id_KH: string;
-
     @Prop()
     username: string;
 
@@ -33,5 +29,7 @@ export class KhachHangs extends Document {
     @Prop()
     avt: string;
 }
+
+
 
 export const KhachHangSchema = SchemaFactory.createForClass(KhachHangs);
