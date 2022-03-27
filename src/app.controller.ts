@@ -30,7 +30,7 @@ export class AppController {
 
   @UseGuards(JwtAuthGuard)
   @Get('profile')
-  async getProfile(@Request() req): Promise <string>{
+  async getProfile(@Request() req){
     return req.user;
   }
 
