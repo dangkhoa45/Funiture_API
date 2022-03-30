@@ -22,5 +22,8 @@ export class SanPhams {
     soLuong_SP: string;
     @Prop()
     soLuong_DB: string;
+
+    @Prop()
+    image: string;
 }
 export const SanPhamsSchema = SchemaFactory.createForClass(SanPhams);

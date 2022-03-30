@@ -36,4 +36,8 @@ export class SanPhamService {
   remove(_id: string) {
     return this.SanPhamsModel.findByIdAndRemove({_id});
   }
+
+  upLoadImage(_id: string, image: string){
+    return this.SanPhamsModel.findByIdAndUpdate(_id,{image});
+  }
 }

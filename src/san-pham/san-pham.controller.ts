@@ -8,13 +8,19 @@ import {
   Param,
   Patch,
   Post,
+  UploadedFile,
+  UseInterceptors,
 } from '@nestjs/common';
 
 import { CreateSanPhamDto } from './dto/create-san-pham.dto';
 import { UpdateSanPhamDto } from './dto/update-san-pham.dto';
 import { SanPhamService } from './san-pham.service';
 import { ApiTags } from '@nestjs/swagger';
+import { FileInterceptor } from '@nestjs/platform-express';
   
+const fs = require("fs");
+const path = require("path");
+
 @ApiTags('San Pham')
 @Controller('/san-pham')
 export class SanPhamController {
@@ -48,5 +54,19 @@ export class SanPhamController {
   @Delete(':id')
   remove(@Param('id') _id: string) {
     return this.sanPhamService.remove(_id);
+  }
+
+  @Public()
+  @Post(':id/image')
+  @UseInterceptors(FileInterceptor('image',{dest: 'uploads'}))
+  uploadFile(@Param('id') id : string,@UploadedFile() file: Express.Multer.File) {
+    const relativePath = `image/${id}/${file.originalname}`;
+    const absolutePath = path.resolve(relativePath);
+    if(!fs.existsSync(path.dirname(absolutePath))){
+      fs.mkdirSync(path.dirname(absolutePath),{
+        recursive:true
+      });
+    }
+    return this.sanPhamService.upLoadImage(id,relativePath);
   }
 }
