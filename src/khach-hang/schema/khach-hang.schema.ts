@@ -27,7 +27,7 @@ export class KhachHangs extends Document {
     phone: string;
 
     @Prop()
-    avt: string;
+    avt:string;
 }
 
 

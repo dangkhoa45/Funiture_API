@@ -4,6 +4,6 @@ export class CreateKhachHangDto {
     password: string;
     address: string;
     phone: string;
-    avt_KH: string;
+    avt: string;
 }
 

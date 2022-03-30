@@ -18,11 +18,13 @@ export class AuthService {
         //const { password, ...result } = khachHang;
         //console.log(result);
         const reqBody = {
+          id: khachHang._id,
           username: khachHang.username,
           email: khachHang.email,
           password: hash,
           address: khachHang.address,
           phone: khachHang.phone,
+          avt: khachHang.avt
         }
         console.log(reqBody);
         return reqBody;

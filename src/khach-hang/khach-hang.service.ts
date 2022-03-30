@@ -45,5 +45,9 @@ export class KhachHangService {
   remove(_id: string) {
     return this.khachHangModel.findByIdAndRemove({_id});
   }
+
+  uploadAVT(_id: string, avt: string){
+    return this.khachHangModel.findByIdAndUpdate(_id,{avt});
+  }
   
 }
