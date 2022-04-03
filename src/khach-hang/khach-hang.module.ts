@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
+
 import { KhachHangController } from './khach-hang.controller';
 import { KhachHangService } from './khach-hang.service';
 import {

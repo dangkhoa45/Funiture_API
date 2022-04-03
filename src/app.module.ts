@@ -6,17 +6,18 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { JwtAuthGuard } from './auth/jwt-auth.guard';
-  
-import { CartsModule } from './carts/carts.module';
-
 import { KhachHangModule } from './khach-hang/khach-hang.module';
 import { SanPhamModule } from './san-pham/san-pham.module';
+import { CartModule } from './cart/cart.module';
+import { BillModule } from './bill/bill.module';
+
 @Module({
   imports: [KhachHangModule,
-    CartsModule,
     MongooseModule.forRoot('mongodb+srv://user_45:khoa123456@cluster0.bwv88.mongodb.net/FUNITURE_API?retryWrites=true&w=majority'),
     SanPhamModule,
-    AuthModule, 
+    AuthModule,
+    CartModule,
+    BillModule,
   ],
   controllers: [AppController],
   providers: [

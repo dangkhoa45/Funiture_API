@@ -1,4 +1,6 @@
+import { diskStorage } from 'multer';
 import { Public } from 'src/auth/jwt-auth.guard';
+import { v4 as uuidv4 } from 'uuid';
 
 import {
   Body,
@@ -11,15 +13,28 @@ import {
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { ApiTags } from '@nestjs/swagger';
 
 import { CreateSanPhamDto } from './dto/create-san-pham.dto';
 import { UpdateSanPhamDto } from './dto/update-san-pham.dto';
 import { SanPhamService } from './san-pham.service';
-import { ApiTags } from '@nestjs/swagger';
-import { FileInterceptor } from '@nestjs/platform-express';
-  
+
 const fs = require("fs");
 const path = require("path");
+
+export const storage = {
+  storage: diskStorage({
+      destination: './uploads/profileimages',
+      filename: (req, file, cb) => {
+          const filename: string = path.parse(file.originalname).name.replace(/\s/g, '') + uuidv4();
+          const extension: string = path.parse(file.originalname).ext;
+
+          cb(null, `${filename}${extension}`)
+      }
+  })
+
+}
 
 @ApiTags('San Pham')
 @Controller('/san-pham')
@@ -57,16 +72,16 @@ export class SanPhamController {
   }
 
   @Public()
-  @Post(':id/image')
-  @UseInterceptors(FileInterceptor('image',{dest: 'uploads'}))
-  uploadFile(@Param('id') id : string,@UploadedFile() file: Express.Multer.File) {
-    const relativePath = `image/${id}/${file.originalname}`;
+  @Post(':id/avt')
+  @UseInterceptors(FileInterceptor('avt',storage))
+  uploadFile(@Param('id') _id : string,@UploadedFile() file: Express.Multer.File) {
+    const relativePath = `uploads/profileimages/${file.originalname}`;
     const absolutePath = path.resolve(relativePath);
     if(!fs.existsSync(path.dirname(absolutePath))){
       fs.mkdirSync(path.dirname(absolutePath),{
         recursive:true
       });
     }
-    return this.sanPhamService.upLoadImage(id,relativePath);
-  }
+    return this.sanPhamService.upLoadImage(_id,relativePath);
+  }  
 }

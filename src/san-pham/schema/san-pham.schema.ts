@@ -6,20 +6,24 @@ import {
   SchemaFactory,
 } from '@nestjs/mongoose';
 
-export type SanPhamDocument = SanPham & Document;
-export type SanPham = any;
+export type SanPhamDocument = SanPhams & Document;
+
 
 @Schema()
-export class SanPhams {
+export class SanPhams extends Document{
   
     @Prop()
     ten_SP: string;
+
     @Prop()
     nsx_SP: string;
+
     @Prop()
     chiTiet_SP: string;
+
     @Prop()
     soLuong_SP: string;
+
     @Prop()
     soLuong_DB: string;
 
