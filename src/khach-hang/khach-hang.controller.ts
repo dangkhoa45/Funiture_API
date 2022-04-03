@@ -16,8 +16,6 @@ import {
 import { CreateKhachHangDto } from './dto/create-khach-hang.dto';
 import { UpdateKhachHangDto } from './dto/update-khach-hang.dto';
 import { KhachHangService } from './khach-hang.service';
-import { ApiTags } from '@nestjs/swagger';
-import { FileInterceptor } from '@nestjs/platform-express';
 
 const fs = require("fs");
 const path = require("path");
@@ -51,11 +49,6 @@ export class KhachHangController {
   @Delete(':id')
   remove(@Param('id') _id: string) {
     return this.khachHangService.remove(_id);
-  }
-
-  @Get()
-  async getEmail(@Query('email') username : string){
-    return this.khachHangService.findByUsername(username);
   }
 
   @Public()

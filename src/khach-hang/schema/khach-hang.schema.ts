@@ -30,6 +30,4 @@ export class KhachHangs extends Document {
     avt:string;
 }
 
-
-
 export const KhachHangSchema = SchemaFactory.createForClass(KhachHangs);
