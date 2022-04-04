@@ -17,5 +17,11 @@ export class Bill extends Document {
 
   @Prop({ type: SanPhamsSchema })
   product: [SanPhams];
+
+  @Prop()
+  status: string;
+
+  @Prop({ type: Date.now })
+  createTime: Date;
 }
 export const BillSchema = SchemaFactory.createForClass(Bill);
