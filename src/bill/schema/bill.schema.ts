@@ -1,9 +1,13 @@
+import { Document } from 'mongoose';
 import {
   SanPhams,
   SanPhamsSchema,
 } from 'src/san-pham/schema/san-pham.schema';
 
-import { Prop } from '@nestjs/mongoose';
+import {
+  Prop,
+  SchemaFactory,
+} from '@nestjs/mongoose';
 
 export type BillDocument = Bill & Document;
 
@@ -21,3 +25,4 @@ export class Bill extends Document{
     @Prop({type: SanPhamsSchema})
     product : [SanPhams];
 }
+export const BillSchema = SchemaFactory.createForClass(Bill);
