@@ -5,15 +5,12 @@ import { InjectModel } from '@nestjs/mongoose';
 
 import { CreateSanPhamDto } from './dto/create-san-pham.dto';
 import { UpdateSanPhamDto } from './dto/update-san-pham.dto';
-import {
-  SanPhamDocument,
-  SanPhams,
-} from './schema/san-pham.schema';
+import { SanPhamDocument, SanPhams } from './schema/san-pham.schema';
 
 @Injectable()
 export class SanPhamService {
   constructor(
-    @InjectModel(SanPhams.name) private SanPhamsModel: Model <SanPhamDocument>
+    @InjectModel(SanPhams.name) private SanPhamsModel: Model<SanPhamDocument>,
   ) {}
 
   create(createSanPhamDto: CreateSanPhamDto) {
@@ -26,18 +23,18 @@ export class SanPhamService {
   }
 
   findOne(_id: string) {
-    return this.SanPhamsModel.findOne({_id});
+    return this.SanPhamsModel.findOne({ _id });
   }
 
   update(_id: string, updateSanPhamDto: UpdateSanPhamDto) {
-    return this.SanPhamsModel.findByIdAndUpdate({_id},updateSanPhamDto);
+    return this.SanPhamsModel.findByIdAndUpdate({ _id }, updateSanPhamDto);
   }
 
   remove(_id: string) {
-    return this.SanPhamsModel.findByIdAndRemove({_id});
+    return this.SanPhamsModel.findByIdAndRemove({ _id });
   }
 
-  upLoadImage(_id: string, image: string){
-    return this.SanPhamsModel.findByIdAndUpdate(_id,{image});
+  upLoadImage(_id: string, image: string) {
+    return this.SanPhamsModel.findByIdAndUpdate(_id, { image });
   }
 }

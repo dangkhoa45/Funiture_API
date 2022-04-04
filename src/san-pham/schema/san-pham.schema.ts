@@ -1,17 +1,11 @@
 import { Document } from 'mongoose';
 
-import {
-  Prop,
-  Schema,
-  SchemaFactory,
-} from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
 export type SanPhamDocument = SanPhams & Document;
 
-
 @Schema()
-export class SanPhams extends Document{
-  
+export class SanPhams extends Document {
   @Prop()
   title: string;
 
@@ -32,9 +26,8 @@ export class SanPhams extends Document{
 
   @Prop()
   tag: string;
-  
+
   @Prop()
   image: string;
-
 }
 export const SanPhamsSchema = SchemaFactory.createForClass(SanPhams);

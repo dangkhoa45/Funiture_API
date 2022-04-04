@@ -1,5 +1,5 @@
 export class CreateBillDto {
-    userName:string;
-    userAddress: string;
-    userEmail:string;
+  userName: string;
+  userAddress: string;
+  userEmail: string;
 }

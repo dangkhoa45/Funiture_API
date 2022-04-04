@@ -1,7 +1,4 @@
-import {
-  ExtractJwt,
-  Strategy,
-} from 'passport-jwt';
+import { ExtractJwt, Strategy } from 'passport-jwt';
 
 import { Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
@@ -18,7 +15,8 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  async validate(payload: any) { // tra ve du lieu
+  async validate(payload: any) {
+    // tra ve du lieu
     //console.log(payload);
     return payload;
   }

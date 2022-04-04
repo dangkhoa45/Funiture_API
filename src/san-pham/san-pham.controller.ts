@@ -20,21 +20,21 @@ import { CreateSanPhamDto } from './dto/create-san-pham.dto';
 import { UpdateSanPhamDto } from './dto/update-san-pham.dto';
 import { SanPhamService } from './san-pham.service';
 
-const fs = require("fs");
-const path = require("path");
+const fs = require('fs');
+const path = require('path');
 
 export const storage = {
   storage: diskStorage({
-      destination: './uploads/profileimages',
-      filename: (req, file, cb) => {
-          const filename: string = path.parse(file.originalname).name.replace(/\s/g, '') + uuidv4();
-          const extension: string = path.parse(file.originalname).ext;
+    destination: './uploads/profileimages',
+    filename: (req, file, cb) => {
+      const filename: string =
+        path.parse(file.originalname).name.replace(/\s/g, '') + uuidv4();
+      const extension: string = path.parse(file.originalname).ext;
 
-          cb(null, `${filename}${extension}`)
-      }
-  })
-
-}
+      cb(null, `${filename}${extension}`);
+    },
+  }),
+};
 
 @ApiTags('San Pham')
 @Controller('/san-pham')
@@ -73,15 +73,18 @@ export class SanPhamController {
 
   @Public()
   @Post(':id/avt')
-  @UseInterceptors(FileInterceptor('avt',storage))
-  uploadFile(@Param('id') _id : string,@UploadedFile() file: Express.Multer.File) {
+  @UseInterceptors(FileInterceptor('avt', storage))
+  uploadFile(
+    @Param('id') _id: string,
+    @UploadedFile() file: Express.Multer.File,
+  ) {
     const relativePath = `uploads/profileimages/${file.originalname}`;
     const absolutePath = path.resolve(relativePath);
-    if(!fs.existsSync(path.dirname(absolutePath))){
-      fs.mkdirSync(path.dirname(absolutePath),{
-        recursive:true
+    if (!fs.existsSync(path.dirname(absolutePath))) {
+      fs.mkdirSync(path.dirname(absolutePath), {
+        recursive: true,
       });
     }
-    return this.sanPhamService.upLoadImage(_id,relativePath);
-  }  
+    return this.sanPhamService.upLoadImage(_id, relativePath);
+  }
 }
