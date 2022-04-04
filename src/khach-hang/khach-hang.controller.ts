@@ -20,28 +20,26 @@ import { CreateKhachHangDto } from './dto/create-khach-hang.dto';
 import { UpdateKhachHangDto } from './dto/update-khach-hang.dto';
 import { KhachHangService } from './khach-hang.service';
 
-const fs = require("fs");
-const path = require("path");
+const fs = require('fs');
+const path = require('path');
 
 export const storage = {
   storage: diskStorage({
-      destination: './uploads/profileimages',
-      filename: (req, file, cb) => {
-          const filename: string = path.parse(file.originalname).name.replace(/\s/g, '') + uuidv4();
-          const extension: string = path.parse(file.originalname).ext;
+    destination: './uploads/profileimages',
+    filename: (req, file, cb) => {
+      const filename: string =
+        path.parse(file.originalname).name.replace(/\s/g, '') + uuidv4();
+      const extension: string = path.parse(file.originalname).ext;
 
-          cb(null, `${filename}${extension}`)
-      }
-  })
-
-}
+      cb(null, `${filename}${extension}`);
+    },
+  }),
+};
 
 @ApiTags('Khach Hang')
 @Controller('/khach-hang')
 export class KhachHangController {
-  constructor(
-    private readonly khachHangService: KhachHangService,
-    ) {}
+  constructor(private readonly khachHangService: KhachHangService) {}
 
   @Public()
   @Post()
@@ -63,7 +61,10 @@ export class KhachHangController {
 
   @Public()
   @Patch(':id')
-  update(@Param('id') _id: string, @Body() updateKhachHangDto: UpdateKhachHangDto) {
+  update(
+    @Param('id') _id: string,
+    @Body() updateKhachHangDto: UpdateKhachHangDto,
+  ) {
     return this.khachHangService.update(_id, updateKhachHangDto);
   }
 
@@ -74,17 +75,20 @@ export class KhachHangController {
 
   @Public()
   @Post(':id/avt')
-  @UseInterceptors(FileInterceptor('avt',storage))
-  uploadFile(@Param('id') _id : string,@UploadedFile() file: Express.Multer.File) {
+  @UseInterceptors(FileInterceptor('avt', storage))
+  uploadFile(
+    @Param('id') _id: string,
+    @UploadedFile() file: Express.Multer.File,
+  ) {
     const relativePath = `uploads/profileimages/${file.originalname}`;
     const absolutePath = path.resolve(relativePath);
-    if(!fs.existsSync(path.dirname(absolutePath))){
-      fs.mkdirSync(path.dirname(absolutePath),{
-        recursive:true
+    if (!fs.existsSync(path.dirname(absolutePath))) {
+      fs.mkdirSync(path.dirname(absolutePath), {
+        recursive: true,
       });
     }
-    return this.khachHangService.uploadAVT(_id,relativePath);
-  }  
+    return this.khachHangService.uploadAVT(_id, relativePath);
+  }
 
   // @Public()
   // @Get('profile-image/:imagename' )

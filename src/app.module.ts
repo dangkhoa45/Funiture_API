@@ -12,8 +12,11 @@ import { CartModule } from './cart/cart.module';
 import { BillModule } from './bill/bill.module';
 
 @Module({
-  imports: [KhachHangModule,
-    MongooseModule.forRoot('mongodb+srv://user_45:khoa123456@cluster0.bwv88.mongodb.net/FUNITURE_API?retryWrites=true&w=majority'),
+  imports: [
+    KhachHangModule,
+    MongooseModule.forRoot(
+      'mongodb+srv://truongb1805829:CaJznJZ7@restapicluster.wmetd.mongodb.net/FUNITURE_API?retryWrites=true&w=majority',
+    ),
     SanPhamModule,
     AuthModule,
     CartModule,

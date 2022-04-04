@@ -1,6 +1,6 @@
 export class CreateBillDto {
-    userName:string;
-    userAddress: string;
-    userEmail:string;
-    status: string;
+  userName: string;
+  userAddress: string;
+  userEmail: string;
+  status: string;
 }

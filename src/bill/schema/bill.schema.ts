@@ -1,34 +1,27 @@
 import { Document } from 'mongoose';
-import {
-  SanPhams,
-  SanPhamsSchema,
-} from 'src/san-pham/schema/san-pham.schema';
+import { SanPhams, SanPhamsSchema } from 'src/san-pham/schema/san-pham.schema';
 
-import {
-  Prop,
-  SchemaFactory,
-} from '@nestjs/mongoose';
+import { Prop, SchemaFactory } from '@nestjs/mongoose';
 
 export type BillDocument = Bill & Document;
 
+export class Bill extends Document {
+  @Prop()
+  userName: string;
 
-export class Bill extends Document{
-    @Prop()
-    userName: string;
+  @Prop()
+  userEmail: string;
 
-    @Prop()
-    userEmail: string;
+  @Prop()
+  userAddress: string;
 
-    @Prop()
-    userAddress: string;
+  @Prop({ type: SanPhamsSchema })
+  product: [SanPhams];
 
-    @Prop({type: SanPhamsSchema})
-    product : [SanPhams];
+  @Prop()
+  status: string;
 
-    @Prop()
-    status: string;
-
-    @Prop({type: Date.now})
-    createTime: Date;
+  @Prop({ type: Date.now })
+  createTime: Date;
 }
 export const BillSchema = SchemaFactory.createForClass(Bill);

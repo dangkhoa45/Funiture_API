@@ -1,8 +1,5 @@
 import { NestFactory } from '@nestjs/core';
-import {
-  DocumentBuilder,
-  SwaggerModule,
-} from '@nestjs/swagger';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import { AppModule } from './app.module';
 
@@ -18,7 +15,7 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
 
   await app.listen(3000, '0.0.0.0', () => {
-    console.log('Server listening at http://0.0.0.0:' + 3000 + '/api/')
-  })
+    console.log('Server listening at http://0.0.0.0:' + 3000 + '/api/');
+  });
 }
 bootstrap();
