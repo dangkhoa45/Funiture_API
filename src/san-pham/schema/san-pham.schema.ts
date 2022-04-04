@@ -12,22 +12,29 @@ export type SanPhamDocument = SanPhams & Document;
 @Schema()
 export class SanPhams extends Document{
   
-    @Prop()
-    ten_SP: string;
+  @Prop()
+  title: string;
 
-    @Prop()
-    nsx_SP: string;
+  @Prop()
+  producer: string;
 
-    @Prop()
-    chiTiet_SP: string;
+  @Prop()
+  details: string;
 
-    @Prop()
-    soLuong_SP: string;
+  @Prop()
+  amount: string;
 
-    @Prop()
-    soLuong_DB: string;
+  @Prop()
+  sold: string;
 
-    @Prop()
-    image: string;
+  @Prop()
+  price: string;
+
+  @Prop()
+  tag: string;
+  
+  @Prop()
+  image: string;
+
 }
 export const SanPhamsSchema = SchemaFactory.createForClass(SanPhams);
