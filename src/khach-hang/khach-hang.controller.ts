@@ -1,4 +1,5 @@
 import { diskStorage } from 'multer';
+import { join } from 'path';
 import { Public } from 'src/auth/jwt-auth.guard';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -10,6 +11,7 @@ import {
   Param,
   Patch,
   Post,
+  Res,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
@@ -75,24 +77,24 @@ export class KhachHangController {
 
   @Public()
   @Post(':id/avt')
-  @UseInterceptors(FileInterceptor('avt', storage))
+  @UseInterceptors(FileInterceptor('avt',storage))
   uploadFile(
     @Param('id') _id: string,
-    @UploadedFile() file: Express.Multer.File,
+    @UploadedFile() file,
   ) {
-    const relativePath = `uploads/profileimages/${file.originalname}`;
-    const absolutePath = path.resolve(relativePath);
-    if (!fs.existsSync(path.dirname(absolutePath))) {
-      fs.mkdirSync(path.dirname(absolutePath), {
-        recursive: true,
-      });
-    }
-    return this.khachHangService.uploadAVT(_id, relativePath);
+    // const relativePath = `uploads/profileimages/${file.originalname}`;
+    // const absolutePath = path.resolve(relativePath);
+    // if (!fs.existsSync(path.dirname(absolutePath))) {
+    //   fs.mkdirSync(path.dirname(absolutePath), {
+    //     recursive: true,
+    //   });
+    // }
+    return this.khachHangService.uploadAVT(_id, file.filename);
   }
 
-  // @Public()
-  // @Get('profile-image/:imagename' )
-  // findProfileImage(@Param('imagename') imagename, @Res() res){
-  //     return res.sendFile(join(process.cwd(), 'uploads/profileimages/' + imagename));
-  // }
+  @Public()  
+  @Get('uploads/profileimages/:imagename')
+    findProfileImage(@Param('imagename') imagename, @Res() res){
+        return res.sendFile(join(process.cwd(), 'uploads/profileimages/' + imagename));
+    }
 }

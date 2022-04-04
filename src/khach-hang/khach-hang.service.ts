@@ -5,7 +5,10 @@ import { InjectModel } from '@nestjs/mongoose';
 
 import { CreateKhachHangDto } from './dto/create-khach-hang.dto';
 import { UpdateKhachHangDto } from './dto/update-khach-hang.dto';
-import { KhachHangDocument, KhachHangs } from './schema/khach-hang.schema';
+import {
+  KhachHangDocument,
+  KhachHangs,
+} from './schema/khach-hang.schema';
 
 @Injectable()
 export class KhachHangService {
@@ -38,7 +41,7 @@ export class KhachHangService {
   }
 
   update(_id: string, updateKhachHangDto: UpdateKhachHangDto) {
-    return this.khachHangModel.findByIdAndUpdate(_id, updateKhachHangDto);
+    return this.khachHangModel.findByIdAndUpdate(_id, {updateKhachHangDto});
   }
 
   remove(_id: string) {

@@ -25,7 +25,7 @@ const path = require('path');
 
 export const storage = {
   storage: diskStorage({
-    destination: './uploads/profileimages',
+    destination: './uploads/profileSanPham',
     filename: (req, file, cb) => {
       const filename: string =
         path.parse(file.originalname).name.replace(/\s/g, '') + uuidv4();
@@ -72,8 +72,8 @@ export class SanPhamController {
   }
 
   @Public()
-  @Post(':id/avt')
-  @UseInterceptors(FileInterceptor('avt', storage))
+  @Post(':id/image')
+  @UseInterceptors(FileInterceptor('image', storage))
   uploadFile(
     @Param('id') _id: string,
     @UploadedFile() file: Express.Multer.File,
