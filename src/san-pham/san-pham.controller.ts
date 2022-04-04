@@ -1,4 +1,5 @@
 import { diskStorage } from 'multer';
+import { join } from 'path';
 import { Public } from 'src/auth/jwt-auth.guard';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -10,6 +11,7 @@ import {
   Param,
   Patch,
   Post,
+  Res,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
@@ -76,15 +78,14 @@ export class SanPhamController {
   @UseInterceptors(FileInterceptor('image', storage))
   uploadFile(
     @Param('id') _id: string,
-    @UploadedFile() file: Express.Multer.File,
+    @UploadedFile() file,
   ) {
-    const relativePath = `uploads/profileimages/${file.originalname}`;
-    const absolutePath = path.resolve(relativePath);
-    if (!fs.existsSync(path.dirname(absolutePath))) {
-      fs.mkdirSync(path.dirname(absolutePath), {
-        recursive: true,
-      });
-    }
-    return this.sanPhamService.upLoadImage(_id, relativePath);
+    return this.sanPhamService.upLoadImage(_id, file.filename);
+  }
+
+  @Public()
+  @Get('uploads/profileSanPham/:imagename')
+  findProfileImage(@Param('imagename') imagename, @Res() res) {
+    return res.sendFile(join(process.cwd(), 'uploads/profileSanPham/' + imagename));
   }
 }

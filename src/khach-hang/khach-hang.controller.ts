@@ -41,7 +41,7 @@ export const storage = {
 @ApiTags('Khach Hang')
 @Controller('/khach-hang')
 export class KhachHangController {
-  constructor(private readonly khachHangService: KhachHangService) {}
+  constructor(private readonly khachHangService: KhachHangService) { }
 
   @Public()
   @Post()
@@ -77,24 +77,17 @@ export class KhachHangController {
 
   @Public()
   @Post(':id/avt')
-  @UseInterceptors(FileInterceptor('avt',storage))
+  @UseInterceptors(FileInterceptor('avt', storage))
   uploadFile(
     @Param('id') _id: string,
     @UploadedFile() file,
   ) {
-    // const relativePath = `uploads/profileimages/${file.originalname}`;
-    // const absolutePath = path.resolve(relativePath);
-    // if (!fs.existsSync(path.dirname(absolutePath))) {
-    //   fs.mkdirSync(path.dirname(absolutePath), {
-    //     recursive: true,
-    //   });
-    // }
     return this.khachHangService.uploadAVT(_id, file.filename);
   }
 
-  @Public()  
+  @Public()
   @Get('uploads/profileimages/:imagename')
-    findProfileImage(@Param('imagename') imagename, @Res() res){
-        return res.sendFile(join(process.cwd(), 'uploads/profileimages/' + imagename));
-    }
+  findProfileImage(@Param('imagename') imagename, @Res() res) {
+    return res.sendFile(join(process.cwd(), 'uploads/profileimages/' + imagename));
+  }
 }
