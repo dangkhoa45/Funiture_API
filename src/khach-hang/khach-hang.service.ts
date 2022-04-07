@@ -38,7 +38,7 @@ export class KhachHangService {
   }
 
   update(_id: string, updateKhachHangDto: UpdateKhachHangDto) {
-    return this.khachHangModel.findByIdAndUpdate(_id, updateKhachHangDto);
+    return this.khachHangModel.findByIdAndUpdate(_id, { updateKhachHangDto });
   }
 
   remove(_id: string) {

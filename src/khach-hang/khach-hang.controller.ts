@@ -1,4 +1,5 @@
 import { diskStorage } from 'multer';
+import { join } from 'path';
 import { Public } from 'src/auth/jwt-auth.guard';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -20,7 +21,6 @@ import { ApiTags } from '@nestjs/swagger';
 import { CreateKhachHangDto } from './dto/create-khach-hang.dto';
 import { UpdateKhachHangDto } from './dto/update-khach-hang.dto';
 import { KhachHangService } from './khach-hang.service';
-import { join } from 'path';
 
 const fs = require('fs');
 const path = require('path');
