@@ -31,11 +31,6 @@ export class KhachHangs extends Document {
   @Prop({ default: '' })
   avt: string;
 
-  @Prop({ type: CartSchema })
-  cart: [Cart];
-
-  @Prop({ type: ChatSchema })
-  chat: [Chats];
 }
 
 export const KhachHangSchema = SchemaFactory.createForClass(KhachHangs);
