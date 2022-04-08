@@ -6,6 +6,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { JwtAuthGuard } from './auth/jwt-auth.guard';
+import { BillModule } from './bill/bill.module';
+import { CartModule } from './cart/cart.module';
 import { KhachHangModule } from './khach-hang/khach-hang.module';
 import { SanPhamModule } from './san-pham/san-pham.module';
 
@@ -13,7 +15,7 @@ import { SanPhamModule } from './san-pham/san-pham.module';
   imports: [
     KhachHangModule,
     MongooseModule.forRoot(
-      'mongodb+srv://truongb1805829:CaJznJZ7@restapicluster.wmetd.mongodb.net/FUNITURE_API?retryWrites=true&w=majority',
+      'mongodb+srv://user_45:khoa123456@cluster0.bwv88.mongodb.net/FUNITURE_API?retryWrites=true&w=majority',
     ),
     SanPhamModule,
     AuthModule,

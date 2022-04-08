@@ -38,10 +38,14 @@ export const storage = {
   }),
 };
 
+
+
 @ApiTags('Khach Hang')
 @Controller('/khach-hang')
 export class KhachHangController {
-  constructor(private readonly khachHangService: KhachHangService) { }
+  constructor(
+    private khachHangService: KhachHangService,
+  ) { }
 
   @Public()
   @Post()
@@ -90,4 +94,6 @@ export class KhachHangController {
   findProfileImage(@Param('imagename') imagename, @Res() res) {
     return res.sendFile(join(process.cwd(), 'uploads/profileimages/' + imagename));
   }
+
+
 }

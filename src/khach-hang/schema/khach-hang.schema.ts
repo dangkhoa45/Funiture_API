@@ -1,13 +1,12 @@
 import { Document } from 'mongoose';
-import { Cart, CartSchema } from 'src/cart/schema/cart.schema';
 
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-
-import { Chats, ChatSchema } from './chats.shema';
+import {
+  Prop,
+  Schema,
+  SchemaFactory,
+} from '@nestjs/mongoose';
 
 export type KhachHangDocument = KhachHangs & Document;
-export type KhachHang = any;
-
 @Schema()
 export class KhachHangs extends Document {
   @Prop()
