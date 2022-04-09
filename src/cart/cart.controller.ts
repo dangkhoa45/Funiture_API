@@ -1,12 +1,6 @@
 import { Public } from 'src/auth/jwt-auth.guard';
 
-import {
-  Body,
-  Controller,
-  Get,
-  Param,
-  Post,
-} from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
 import { CartService } from './cart.service';
@@ -19,7 +13,7 @@ export class CartController {
 
   @Public()
   @Post()
-  create(@Body() createCartDto: CreateCartDto){
+  create(@Body() createCartDto: CreateCartDto) {
     return this.cartService.create(createCartDto);
   }
 
