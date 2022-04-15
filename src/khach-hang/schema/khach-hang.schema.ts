@@ -1,4 +1,8 @@
 import { Document } from 'mongoose';
+import {
+  Cart,
+  CartSchema,
+} from 'src/cart/schema/cart.schema';
 
 import {
   Prop,
@@ -29,6 +33,9 @@ export class KhachHangs extends Document {
 
   @Prop({ default: '' })
   avt: string;
+
+  @Prop({type: CartSchema})
+  cart: Cart;
 
 }
 

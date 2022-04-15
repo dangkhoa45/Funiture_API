@@ -1,4 +1,5 @@
 import { KhachHangModule } from 'src/khach-hang/khach-hang.module';
+import { SanPhamModule } from 'src/san-pham/san-pham.module';
 
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -13,7 +14,7 @@ import {
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: Cart.name, schema: CartSchema }]),
-    KhachHangModule
+    KhachHangModule,SanPhamModule
   ],
   controllers: [CartController],
   providers: [CartService],

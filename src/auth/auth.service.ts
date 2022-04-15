@@ -1,9 +1,9 @@
+import * as bcrypt from 'bcrypt';
 import { KhachHangService } from 'src/khach-hang/khach-hang.service';
 
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
-import * as bcrypt from 'bcrypt';
 @Injectable()
 export class AuthService {
   constructor(
@@ -12,7 +12,7 @@ export class AuthService {
   ) {}
 
   async validateUser(username: string, pass: string): Promise<any> {
-    const khachHang = await this.khachHangService.findByUsername(username);
+    const khachHang = await this.khachHangService.findInput(username);
     const salt = await bcrypt.genSalt();
     const hash = await bcrypt.hash(khachHang.password, salt);
     //console.log(khachHang);

@@ -1,5 +1,9 @@
 import mongoose, { Document } from 'mongoose';
 import { KhachHangs } from 'src/khach-hang/schema/khach-hang.schema';
+import {
+  SanPhams,
+  SanPhamsSchema,
+} from 'src/san-pham/schema/san-pham.schema';
 
 import {
   Prop,
@@ -12,7 +16,8 @@ export type CartDocument = Cart & Document;
 @Schema()
 export class Cart extends Document {
 
-  @Prop({ type: { type: mongoose.Schema.Types.ObjectId, ref: "khachHangs" } })
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Khach Hang' })
+  // @Prop({type: KhachHangSchema})
   createUser: KhachHangs;
 
   @Prop()
@@ -23,5 +28,14 @@ export class Cart extends Document {
 
   @Prop()
   price: string;
+
+  @Prop({ default: 0 })
+  item: number;
+
+  @Prop({ type: Date, default: Date.now })
+  createAt: Date;
+
+  @Prop({type: SanPhamsSchema})
+  listItem: [SanPhams];
 }
 export const CartSchema = SchemaFactory.createForClass(Cart);
