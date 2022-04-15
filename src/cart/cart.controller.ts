@@ -1,5 +1,4 @@
 import { Public } from 'src/auth/jwt-auth.guard';
-import { KhachHangService } from 'src/khach-hang/khach-hang.service';
 
 import {
   Body,
@@ -21,7 +20,6 @@ import { Cart } from './schema/cart.schema';
 export class CartController {
   constructor(
     private readonly cartService: CartService,
-    private readonly khachHangService: KhachHangService
   ) { }
 
   @Public()

@@ -48,8 +48,4 @@ export class KhachHangService {
   uploadAVT(_id: string, avt: string) {
     return this.khachHangModel.findByIdAndUpdate(_id, { avt });
   }
-
-  uploadCart(_id: string, updateCartDto: UpdateCartDto ){
-    return this.khachHangModel.findByIdAndUpdate(_id, {updateCartDto});
-  }
 }
