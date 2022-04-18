@@ -1,5 +1,4 @@
 import { Model } from 'mongoose';
-import { UpdateCartDto } from 'src/cart/dto/update-cart.dto';
 
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
@@ -20,33 +19,32 @@ export class KhachHangService {
     return createKhachHang.save();
   }
 
-  findAll() {
-    return this.khachHangModel.find().exec();
+  async findAll() {
+    return await this.khachHangModel.find().exec();
   }
 
   async findOne(_id: string): Promise<KhachHangs> {
     return await this.khachHangModel.findOne({ _id }).exec();
   }
 
-  findByUsername(input: string) {
-    return this.khachHangModel.findOne({
+  async findInput(input: string) {
+    return await this.khachHangModel.findOne({
       $or: [{ username: input }, { email: input }],
     });
   }
 
-  update(_id: string, updateKhachHangDto: UpdateKhachHangDto) {
-    return this.khachHangModel.findByIdAndUpdate(_id, updateKhachHangDto);
+  async update(_id: string, updateKhachHangDto: UpdateKhachHangDto) {
+    return await this.khachHangModel.findByIdAndUpdate(
+      { _id },
+      updateKhachHangDto,
+    );
   }
 
-  remove(_id: string) {
-    return this.khachHangModel.findByIdAndRemove({ _id });
+  async remove(_id: string) {
+    return await this.khachHangModel.findByIdAndRemove({ _id });
   }
 
-  uploadAVT(_id: string, avt: string) {
-    return this.khachHangModel.findByIdAndUpdate(_id, { avt });
-  }
-
-  uploadCart(_id: string, updateCartDto: UpdateCartDto) {
-    return this.khachHangModel.findByIdAndUpdate(_id, { updateCartDto });
+  async uploadAVT(_id: string, avt: string) {
+    return await this.khachHangModel.findByIdAndUpdate(_id, { avt });
   }
 }

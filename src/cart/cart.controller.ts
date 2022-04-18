@@ -1,11 +1,14 @@
 import { Public } from 'src/auth/jwt-auth.guard';
 import { KhachHangService } from 'src/khach-hang/khach-hang.service';
+import { SanPhamService } from 'src/san-pham/san-pham.service';
 
 import {
   Body,
   Controller,
   Delete,
   Get,
+  HttpException,
+  HttpStatus,
   Param,
   Patch,
   Post,
@@ -23,6 +26,7 @@ export class CartController {
   constructor(
     private readonly cartService: CartService,
     private readonly khachHangService: KhachHangService,
+    private readonly sanphamService: SanPhamService,
   ) {}
 
   @Public()
@@ -33,26 +37,52 @@ export class CartController {
   }
 
   @Public()
-  @Get('id')
-  async findOne(@Param('id') _id: string): Promise<Cart> {
-    return this.cartService.findById(_id).exec();
+  @Get(':id')
+  async findOne(@Param('id') id: string): Promise<Cart> {
+    return await this.cartService.findById(id);
   }
 
   @Public()
   @Get()
-  findAll() {
-    return this.cartService.findAll();
+  async findAll(): Promise<Cart[]> {
+    return await this.cartService.findAll();
   }
 
   @Public()
-  @Patch('id')
-  async update(@Param('id') _id: string, updateCartDto: UpdateCartDto) {
-    return this.cartService.update(_id, updateCartDto);
+  @Patch(':id')
+  async update(@Param('id') _id: string, @Body() updateCartDto: UpdateCartDto) {
+    return await this.cartService.update(_id, updateCartDto);
   }
 
   @Public()
-  @Delete('id')
+  @Delete(':id')
   async detele(@Param('id') _id: string) {
-    return this.cartService.remove(_id);
+    return await this.cartService.remove(_id);
+  }
+
+  @Public()
+  @Get(':id/updateCart')
+  async getCart(@Param('id') id: string) {
+    const result = await this.cartService.findById(id);
+    if (!result) {
+      const foundUser = await this.khachHangService.findOne(id);
+      if (!foundUser) {
+        throw new HttpException(
+          'Not found User ! try again ',
+          HttpStatus.NOT_FOUND,
+        );
+      }
+      throw new HttpException(
+        'Not found Car ! try again ',
+        HttpStatus.NOT_FOUND,
+      );
+    }
+    await this.cartService.update(id, {
+      item: result.item + 1,
+      createAt: new Date(),
+    });
+
+    console.log(result);
+    return { result };
   }
 }

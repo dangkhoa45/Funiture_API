@@ -13,13 +13,13 @@ import {
 export type BillDocument = Bill & Document;
 
 export class Bill extends Document {
-  @Prop({ type: { type: mongoose.Schema.Types.ObjectId, ref: "khachHangs" } })
+  @Prop({ type: { type: mongoose.Schema.Types.ObjectId, ref:"khachHangs" } })
   userName: KhachHangs;
 
-  @Prop({ type: { type: mongoose.Schema.Types.ObjectId, ref: "khachHangs" } })
+  @Prop({ type: { type: mongoose.Schema.Types.ObjectId, ref:"khachHangs" } })
   userEmail: KhachHangs;
 
-  @Prop({ type: { type: mongoose.Schema.Types.ObjectId, ref: "khachHangs" } })
+  @Prop({ type: { type: mongoose.Schema.Types.ObjectId, ref:"khachHangs" } })
   userAddress: KhachHangs;
 
   @Prop({ type: SanPhamsSchema })

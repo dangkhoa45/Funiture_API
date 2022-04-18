@@ -13,22 +13,27 @@ export class CartService {
 
   async create(createCartDto: CreateCartDto): Promise<Cart> {
     const createCart = new this.cartModel(createCartDto);
-    return createCart.save();
+    console.log(createCart.createUser);
+    return await createCart.save();
   }
 
-  findById(_id: string) {
-    return this.cartModel.findOne({ _id });
+  async findById(_id: string){
+    return await this.cartModel.findOne({ _id });
   }
 
-  findAll() {
+  async findAll() {
     return this.cartModel.find().exec();
   }
 
-  update(_id: string, updateCartDto: UpdateCartDto) {
-    return this.cartModel.findByIdAndUpdate(_id, { updateCartDto });
+  async findCreateUser(createUser: string): Promise<Cart> {
+    return await this.cartModel.findOne({ createUser });
   }
 
-  remove(_id: string) {
-    return this.cartModel.findByIdAndRemove({ _id });
+  async update(_id: string, updateCartDto: UpdateCartDto) {
+    return await this.cartModel.findByIdAndUpdate({_id}, updateCartDto);
+  }
+
+  async remove(_id: string) {
+    return await this.cartModel.findByIdAndRemove({ _id });
   }
 }
