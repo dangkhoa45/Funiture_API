@@ -1,4 +1,5 @@
 import { Model } from 'mongoose';
+import { UpdateCartDto } from 'src/cart/dto/update-cart.dto';
 
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
@@ -23,12 +24,8 @@ export class KhachHangService {
     return this.khachHangModel.find().exec();
   }
 
-  findOne(_id: string) {
-    return this.khachHangModel.findOne({ _id });
-  }
-
-  async getOne(email): Promise<KhachHangs> {
-    return await this.khachHangModel.findOne({ email }).exec();
+  async findOne(_id: string): Promise<KhachHangs> {
+    return await this.khachHangModel.findOne({ _id }).exec();
   }
 
   findByUsername(input: string) {
@@ -38,7 +35,7 @@ export class KhachHangService {
   }
 
   update(_id: string, updateKhachHangDto: UpdateKhachHangDto) {
-    return this.khachHangModel.findByIdAndUpdate(_id, { updateKhachHangDto });
+    return this.khachHangModel.findByIdAndUpdate(_id, updateKhachHangDto);
   }
 
   remove(_id: string) {
@@ -47,5 +44,9 @@ export class KhachHangService {
 
   uploadAVT(_id: string, avt: string) {
     return this.khachHangModel.findByIdAndUpdate(_id, { avt });
+  }
+
+  uploadCart(_id: string, updateCartDto: UpdateCartDto) {
+    return this.khachHangModel.findByIdAndUpdate(_id, { updateCartDto });
   }
 }

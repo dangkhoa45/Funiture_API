@@ -4,10 +4,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 
 import { CreateCartDto } from './dto/create-cart.dto';
-import {
-  Cart,
-  CartDocument,
-} from './schema/cart.schema';
+import { UpdateCartDto } from './dto/update-cart.dto';
+import { Cart, CartDocument } from './schema/cart.schema';
 
 @Injectable()
 export class CartService {
@@ -20,5 +18,17 @@ export class CartService {
 
   findById(_id: string) {
     return this.cartModel.findOne({ _id });
+  }
+
+  findAll() {
+    return this.cartModel.find().exec();
+  }
+
+  update(_id: string, updateCartDto: UpdateCartDto) {
+    return this.cartModel.findByIdAndUpdate(_id, { updateCartDto });
+  }
+
+  remove(_id: string) {
+    return this.cartModel.findByIdAndRemove({ _id });
   }
 }
