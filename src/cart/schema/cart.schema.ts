@@ -9,7 +9,6 @@ export type CartDocument = Cart & Document;
 @Schema()
 export class Cart extends Document {
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Khach Hang' })
-  // @Prop({type: KhachHangSchema})
   createUser: KhachHangs;
 
   @Prop()
