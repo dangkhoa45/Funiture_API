@@ -1,3 +1,4 @@
+import * as bcrypt from 'bcrypt';
 import { diskStorage } from 'multer';
 import { join } from 'path';
 import { Public } from 'src/auth/jwt-auth.guard';
@@ -47,56 +48,62 @@ export class KhachHangController {
 
   @Public()
   @Post()
-  create(@Body() createKhachHangDto: CreateKhachHangDto) {
-    return this.khachHangService.create(createKhachHangDto);
-  }
+  async create(@Body() createKhachHangDto: CreateKhachHangDto) {
+    const {password} = createKhachHangDto;
+    const salt = await bcrypt.genSalt();
+    const hash = await bcrypt.hash(password, salt);
+    createKhachHangDto.password = hash;
+    const result = await this.khachHangService.create(createKhachHangDto);
+    console.log(result);
+    return result;
+}
 
-  @Public()
-  @Get()
-  findAll() {
-    return this.khachHangService.findAll();
-  }
+@Public()
+@Get()
+findAll() {
+  return this.khachHangService.findAll();
+}
 
-  @Public()
-  @Get(':id')
-  findOne(@Param('id') _id: string) {
-    return this.khachHangService.findOne(_id);
-  }
+@Public()
+@Get(':id')
+findOne(@Param('id') _id: string) {
+  return this.khachHangService.findOne(_id);
+}
 
-  @Public()
-  @Patch(':id')
-  update(
+@Public()
+@Patch(':id')
+update(
     @Param('id') _id: string,
     @Body() updateKhachHangDto: UpdateKhachHangDto,
   ) {
-    return this.khachHangService.update(_id, updateKhachHangDto);
-  }
+  return this.khachHangService.update(_id, updateKhachHangDto);
+}
 
-  @Delete(':id')
-  remove(@Param('id') _id: string) {
-    return this.khachHangService.remove(_id);
-  }
+@Delete(':id')
+remove(@Param('id') _id: string) {
+  return this.khachHangService.remove(_id);
+}
 
-  @Public()
-  @Post(':id/avt')
-  @UseInterceptors(FileInterceptor('avt', storage))
-  uploadFile(@Param('id') _id: string, @UploadedFile() file) {
-    // const relativePath = `uploads/profileimages/${file.originalname}`;
-    // const absolutePath = path.resolve(relativePath);
-    // if (!fs.existsSync(path.dirname(absolutePath))) {
-    //   fs.mkdirSync(path.dirname(absolutePath), {
-    //     recursive: true,
-    //   });
-    // }
-    return this.khachHangService.uploadAVT(_id, file.filename);
-  }
+@Public()
+@Post(':id/avt')
+@UseInterceptors(FileInterceptor('avt', storage))
+uploadFile(@Param('id') _id: string, @UploadedFile() file) {
+  // const relativePath = `uploads/profileimages/${file.originalname}`;
+  // const absolutePath = path.resolve(relativePath);
+  // if (!fs.existsSync(path.dirname(absolutePath))) {
+  //   fs.mkdirSync(path.dirname(absolutePath), {
+  //     recursive: true,
+  //   });
+  // }
+  return this.khachHangService.uploadAVT(_id, file.filename);
+}
 
-  @Public()
-  @Get('uploads/profileimages/:imagename')
-  findProfileImage(@Param('imagename') imagename, @Res() res) {
-    return res.sendFile(
-      join(process.cwd(), 'uploads/profileimages/' + imagename),
-    );
-  }
+@Public()
+@Get('uploads/profileimages/:imagename')
+findProfileImage(@Param('imagename') imagename, @Res() res) {
+  return res.sendFile(
+    join(process.cwd(), 'uploads/profileimages/' + imagename),
+  );
+}
 
 }

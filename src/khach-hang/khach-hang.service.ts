@@ -26,8 +26,8 @@ export class KhachHangService {
     return await this.khachHangModel.find().exec();
   }
 
-  async findOne(id: string) {
-    return await this.khachHangModel.findOne({id}).exec();
+  async findOne(_id: string) {
+    return await this.khachHangModel.findOne({_id}).exec();
   }
 
   async findInput(input: string) {
