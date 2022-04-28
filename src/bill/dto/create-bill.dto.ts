@@ -7,4 +7,5 @@ export class CreateBillDto {
   userEmail: KhachHangs;
   product: SanPhams[];
   status: string;
+  createTime: Date;
 }
