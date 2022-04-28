@@ -11,12 +11,12 @@ export type ChatDocument = Chat & Document;
 @Schema()
 export class Chat extends Document{
     @Prop()
-    messeage: string;
+    message: string;
 
-    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: "khachHangs" })
+    @Prop({ type: mongoose.Schema.Types.String, ref: "khachHangs" })
     sendBy: KhachHangs;
 
-    @Prop({type: Date.now})
+    @Prop({type: String, default: Date.now})
     time: Date
 }
 
