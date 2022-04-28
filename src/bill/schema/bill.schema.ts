@@ -1,28 +1,27 @@
 import mongoose, { Document } from 'mongoose';
 import { KhachHangs } from 'src/khach-hang/schema/khach-hang.schema';
-import {
-  SanPhams,
-  SanPhamsSchema,
-} from 'src/san-pham/schema/san-pham.schema';
+import { SanPhams } from 'src/san-pham/schema/san-pham.schema';
 
 import {
   Prop,
+  Schema,
   SchemaFactory,
 } from '@nestjs/mongoose';
 
 export type BillDocument = Bill & Document;
 
+@Schema()
 export class Bill extends Document {
-  @Prop({ type: { type: mongoose.Schema.Types.ObjectId, ref:"khachHangs" } })
+  @Prop({ type: mongoose.Schema.Types.String, ref: "khachHangs" })
   userName: KhachHangs;
 
-  @Prop({ type: { type: mongoose.Schema.Types.ObjectId, ref:"khachHangs" } })
+  @Prop({ type: mongoose.Schema.Types.String, ref: "khachHangs" })
   userEmail: KhachHangs;
 
-  @Prop({ type: { type: mongoose.Schema.Types.ObjectId, ref:"khachHangs" } })
+  @Prop({ type: mongoose.Schema.Types.String, ref: "khachHangs" })
   userAddress: KhachHangs;
 
-  @Prop({ type: SanPhamsSchema })
+  @Prop({ type: mongoose.Schema.Types.Array, ref: "SanPhams" })
   product: [SanPhams];
 
   @Prop()

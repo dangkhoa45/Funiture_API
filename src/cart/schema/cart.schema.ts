@@ -1,8 +1,11 @@
 import mongoose, { Document } from 'mongoose';
 import { KhachHangs } from 'src/khach-hang/schema/khach-hang.schema';
-import { SanPhams, SanPhamsSchema } from 'src/san-pham/schema/san-pham.schema';
 
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import {
+  Prop,
+  Schema,
+  SchemaFactory,
+} from '@nestjs/mongoose';
 
 export type CartDocument = Cart & Document;
 
@@ -28,8 +31,5 @@ export class Cart extends Document {
 
   @Prop({ type: Date, default: Date.now })
   createAt: Date;
-
-  @Prop({ type: SanPhamsSchema })
-  listItem: [SanPhams];
 }
 export const CartSchema = SchemaFactory.createForClass(Cart);

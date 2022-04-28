@@ -1,5 +1,3 @@
-import { Cart } from 'src/cart/schema/cart.schema';
-
 export class CreateKhachHangDto {
   username: string;
 
@@ -14,6 +12,4 @@ export class CreateKhachHangDto {
   phone: string;
 
   avt: string;
-
-  cart: Cart[];
 }

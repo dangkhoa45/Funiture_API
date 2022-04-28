@@ -7,8 +7,6 @@ import {
   Controller,
   Delete,
   Get,
-  HttpException,
-  HttpStatus,
   Param,
   Patch,
   Post,
@@ -27,7 +25,7 @@ export class CartController {
     private readonly cartService: CartService,
     private readonly khachHangService: KhachHangService,
     private readonly sanphamService: SanPhamService,
-  ) {}
+  ) { }
 
   @Public()
   @Post()
@@ -44,8 +42,14 @@ export class CartController {
 
   @Public()
   @Get()
-  async findAll(): Promise<Cart[]> {
+  async findAll() {
     return await this.cartService.findAll();
+  }
+
+  @Public()
+  @Get(":id")
+  async findById(@Param('id') _id: string) {
+    return await this.cartService.findById(_id);
   }
 
   @Public()
@@ -58,31 +62,5 @@ export class CartController {
   @Delete(':id')
   async detele(@Param('id') _id: string) {
     return await this.cartService.remove(_id);
-  }
-
-  @Public()
-  @Get(':id/updateCart')
-  async getCart(@Param('id') id: string) {
-    const result = await this.cartService.findById(id);
-    if (!result) {
-      const foundUser = await this.khachHangService.findOne(id);
-      if (!foundUser) {
-        throw new HttpException(
-          'Not found User ! try again ',
-          HttpStatus.NOT_FOUND,
-        );
-      }
-      throw new HttpException(
-        'Not found Car ! try again ',
-        HttpStatus.NOT_FOUND,
-      );
-    }
-    await this.cartService.update(id, {
-      item: result.item + 1,
-      createAt: new Date(),
-    });
-
-    console.log(result);
-    return { result };
   }
 }

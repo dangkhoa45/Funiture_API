@@ -1,7 +1,10 @@
 import { Document } from 'mongoose';
-import { Cart, CartSchema } from 'src/cart/schema/cart.schema';
 
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import {
+  Prop,
+  Schema,
+  SchemaFactory,
+} from '@nestjs/mongoose';
 
 export type KhachHangDocument = KhachHangs & Document;
 @Schema()
@@ -26,9 +29,6 @@ export class KhachHangs extends Document {
 
   @Prop({ default: '' })
   avt: string;
-
-  @Prop({ type: CartSchema })
-  cart: Cart;
 }
 
 export const KhachHangSchema = SchemaFactory.createForClass(KhachHangs);

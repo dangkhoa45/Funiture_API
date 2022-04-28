@@ -43,7 +43,7 @@ export const storage = {
 @ApiTags('Khach Hang')
 @Controller('/khach-hang')
 export class KhachHangController {
-  constructor(private readonly khachHangService: KhachHangService) {}
+  constructor(private readonly khachHangService: KhachHangService) { }
 
   @Public()
   @Post()
@@ -98,4 +98,5 @@ export class KhachHangController {
       join(process.cwd(), 'uploads/profileimages/' + imagename),
     );
   }
+
 }
