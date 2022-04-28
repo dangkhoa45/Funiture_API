@@ -3,10 +3,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 
 import { SanPhamController } from './san-pham.controller';
 import { SanPhamService } from './san-pham.service';
-import {
-  SanPhams,
-  SanPhamsSchema,
-} from './schema/san-pham.schema';
+import { SanPhams, SanPhamsSchema } from './schema/san-pham.schema';
 
 @Module({
   imports: [
@@ -16,6 +13,6 @@ import {
   ],
   controllers: [SanPhamController],
   providers: [SanPhamService],
-  exports: [SanPhamService]
+  exports: [SanPhamService],
 })
 export class SanPhamModule {}
