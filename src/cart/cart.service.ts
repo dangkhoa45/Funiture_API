@@ -5,14 +5,11 @@ import { InjectModel } from '@nestjs/mongoose';
 
 import { CreateCartDto } from './dto/create-cart.dto';
 import { UpdateCartDto } from './dto/update-cart.dto';
-import {
-  Cart,
-  CartDocument,
-} from './schema/cart.schema';
+import { Cart, CartDocument } from './schema/cart.schema';
 
 @Injectable()
 export class CartService {
-  constructor(@InjectModel(Cart.name) private cartModel: Model<CartDocument>) { }
+  constructor(@InjectModel(Cart.name) private cartModel: Model<CartDocument>) {}
 
   async create(createCartDto: CreateCartDto) {
     const createCart = new this.cartModel(createCartDto);
