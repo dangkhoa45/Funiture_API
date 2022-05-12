@@ -1,3 +1,5 @@
+import { Public } from 'src/auth/jwt-auth.guard';
+
 import {
   Body,
   Controller,
@@ -18,11 +20,13 @@ import { UpdateBillDto } from './dto/update-bill.dto';
 export class BillController {
   constructor(private readonly billService: BillService) {}
 
+  @Public()
   @Post()
   create(@Body() createBillDto: CreateBillDto) {
     return this.billService.create(createBillDto);
   }
 
+  @Public()
   @Get()
   findAll() {
     return this.billService.findAll();

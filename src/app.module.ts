@@ -10,6 +10,7 @@ import { BillModule } from './bill/bill.module';
 import { CartModule } from './cart/cart.module';
 import { KhachHangModule } from './khach-hang/khach-hang.module';
 import { SanPhamModule } from './san-pham/san-pham.module';
+import { ChatsModule } from './chats/chats.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { SanPhamModule } from './san-pham/san-pham.module';
     AuthModule,
     CartModule,
     BillModule,
+    ChatsModule,
   ],
   controllers: [AppController],
   providers: [

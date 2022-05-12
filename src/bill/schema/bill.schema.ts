@@ -1,28 +1,35 @@
 import mongoose, { Document } from 'mongoose';
 import { KhachHangs } from 'src/khach-hang/schema/khach-hang.schema';
-import { SanPhams, SanPhamsSchema } from 'src/san-pham/schema/san-pham.schema';
 
-import { Prop, SchemaFactory } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Cart } from 'src/cart/schema/cart.schema';
 
 export type BillDocument = Bill & Document;
 
+@Schema()
 export class Bill extends Document {
-  @Prop({ type: { type: mongoose.Schema.Types.ObjectId, ref: 'khachHangs' } })
+  @Prop({ type: mongoose.Schema.Types.String, ref: 'khachHangs' })
   userName: KhachHangs;
 
-  @Prop({ type: { type: mongoose.Schema.Types.ObjectId, ref: 'khachHangs' } })
+  @Prop({ type: mongoose.Schema.Types.String, ref: 'khachHangs' })
   userEmail: KhachHangs;
 
-  @Prop({ type: { type: mongoose.Schema.Types.ObjectId, ref: 'khachHangs' } })
+  @Prop({ type: mongoose.Schema.Types.String, ref: 'khachHangs' })
   userAddress: KhachHangs;
 
-  @Prop({ type: SanPhamsSchema })
-  product: [SanPhams];
+  @Prop({ type: mongoose.Schema.Types.String, ref: 'khachHangs' })
+  userPhone: KhachHangs;
+
+  @Prop({ type: mongoose.Schema.Types.Array, ref: 'Cart' })
+  product: Cart[];
+
+  @Prop()
+  transport: string;
 
   @Prop()
   status: string;
 
-  @Prop({ type: Date.now })
+  @Prop({ type: Date, default: Date.now })
   createTime: Date;
 }
 export const BillSchema = SchemaFactory.createForClass(Bill);
