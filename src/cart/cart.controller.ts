@@ -1,6 +1,4 @@
 import { Public } from 'src/auth/jwt-auth.guard';
-import { KhachHangService } from 'src/khach-hang/khach-hang.service';
-import { SanPhamService } from 'src/san-pham/san-pham.service';
 
 import {
   Body,
@@ -23,14 +21,11 @@ import { Cart } from './schema/cart.schema';
 export class CartController {
   constructor(
     private readonly cartService: CartService,
-    private readonly khachHangService: KhachHangService,
-    private readonly sanphamService: SanPhamService,
-  ) {}
+  ) { }
 
   @Public()
   @Post()
   async create(@Body() createCartDto: CreateCartDto) {
-    //console.log(createCartDto.createUser);
     return this.cartService.create(createCartDto);
   }
 
@@ -62,5 +57,11 @@ export class CartController {
   @Delete(':id')
   async detele(@Param('id') _id: string) {
     return await this.cartService.remove(_id);
+  }
+
+  @Public()
+  @Post(':id/addProduct/:productId')
+  async addProduct(@Param('id') _id: string, @Param('productId') productId: string) {
+    return await this.cartService.addProduct(_id, productId);
   }
 }

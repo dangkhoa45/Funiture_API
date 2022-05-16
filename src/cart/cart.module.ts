@@ -1,16 +1,22 @@
-import { KhachHangModule } from 'src/khach-hang/khach-hang.module';
-import { SanPhamModule } from 'src/san-pham/san-pham.module';
+import { ProductsModule } from 'src/products/products.module';
 
-import { Module } from '@nestjs/common';
+import {
+  forwardRef,
+  Module,
+} from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 
 import { CartController } from './cart.controller';
 import { CartService } from './cart.service';
-import { Cart, CartSchema } from './schema/cart.schema';
+import {
+  Cart,
+  CartSchema,
+} from './schema/cart.schema';
 
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: Cart.name, schema: CartSchema }]),
+    forwardRef(() => ProductsModule)
   ],
   controllers: [CartController],
   providers: [CartService],

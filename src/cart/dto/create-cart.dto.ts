@@ -1,17 +1,3 @@
-import { KhachHangs } from 'src/khach-hang/schema/khach-hang.schema';
+import { Cart } from '../schema/cart.schema';
 
-export class CreateCartDto {
-  createUser: KhachHangs;
-
-  productId: string;
-
-  title: string;
-
-  quantity: string;
-
-  price: string;
-
-  createAt: Date;
-
-  image: string;
-}
+export class CreateCartDto extends Cart {}

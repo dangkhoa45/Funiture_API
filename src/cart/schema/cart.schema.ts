@@ -1,31 +1,40 @@
 import mongoose, { Document } from 'mongoose';
-import { KhachHangs } from 'src/khach-hang/schema/khach-hang.schema';
+import { Product } from 'src/products/schema/product.schema';
+import { User } from 'src/users/schema/user.schema';
 
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import {
+  Prop,
+  Schema,
+  SchemaFactory,
+} from '@nestjs/mongoose';
+import { ApiProperty } from '@nestjs/swagger';
 
 export type CartDocument = Cart & Document;
 
 @Schema()
-export class Cart extends Document {
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Khach Hang' })
-  createUser: KhachHangs;
+export class Cart {
 
-  @Prop()
-  productId: string;
+  @ApiProperty({
+    description: 'create khach hang by KhachHangs',
+    example: '6280aba80cd7f70f0595d11a'
+  })
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
+  user: User;
 
-  @Prop()
-  title: string;
+  @ApiProperty({
+    description: 'create product by id Product',
+  })
+  @Prop({type: [{ type: mongoose.Schema.Types.Array, ref: 'Product' }]})
+  product: Product[];
 
+  @ApiProperty({
+    description: 'create a quantity of Product',
+    example: 0
+  })
   @Prop()
-  quantity: string;
-
-  @Prop()
-  price: string;
+  quantity: number;
 
   @Prop({ type: Date, default: Date.now })
   createAt: Date;
-
-  @Prop()
-  image: string;
 }
 export const CartSchema = SchemaFactory.createForClass(Cart);

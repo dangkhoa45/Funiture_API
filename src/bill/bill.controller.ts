@@ -46,4 +46,10 @@ export class BillController {
   remove(@Param('id') _id: string) {
     return this.billService.remove(_id);
   }
+
+  @Public()
+  @Post(':id/addCart/:cartId')
+  async addCart(@Param('id') _id: string, @Param('cartId') cartId: string) {
+    return await this.billService.addCart(_id, cartId);
+  }
 }

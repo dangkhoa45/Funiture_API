@@ -1,5 +1,5 @@
 import * as bcrypt from 'bcrypt';
-import { KhachHangService } from 'src/khach-hang/khach-hang.service';
+import { UsersService } from 'src/users/users.service';
 
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
@@ -7,27 +7,27 @@ import { JwtService } from '@nestjs/jwt';
 @Injectable()
 export class AuthService {
   constructor(
-    private khachHangService: KhachHangService,
+    private userService: UsersService,
     private jwtService: JwtService,
   ) {}
 
   async validateUser(username: string, pass: string): Promise<any> {
-    const khachHang = await this.khachHangService.findInput(username);
+    const user = await this.userService.findInput(username);
     const salt = await bcrypt.genSalt();
-    const hash = await bcrypt.hash(khachHang.password, salt);
+    const hash = await bcrypt.hash(user.password, salt);
     //console.log(khachHang);
-    if (khachHang && khachHang.password === pass) {
+    if (user && user.password === pass) {
       //const { password, ...result } = khachHang;
       //console.log(result);
       const reqBody = {
-        id: khachHang._id,
-        username: khachHang.username,
-        name: khachHang.name,
-        email: khachHang.email,
+        id: user._id,
+        username: user.username,
+        name: user.name,
+        email: user.email,
         password: hash,
-        address: khachHang.address,
-        phone: khachHang.phone,
-        avt: khachHang.avt,
+        address: user.address,
+        phone: user.phone,
+        avt: user.avt,
       };
       console.log(reqBody);
       return reqBody;

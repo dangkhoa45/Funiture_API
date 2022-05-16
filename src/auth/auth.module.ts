@@ -1,4 +1,4 @@
-import { KhachHangModule } from 'src/khach-hang/khach-hang.module';
+import { UsersModule } from 'src/users/users.module';
 
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
@@ -11,7 +11,7 @@ import { LocalStrategy } from './local.strategy';
 
 @Module({
   imports: [
-    KhachHangModule,
+    UsersModule,
     PassportModule,
     JwtModule.register({
       secret: jwtConstants.secret,

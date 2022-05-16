@@ -1,13 +1,12 @@
 import { Cart } from 'src/cart/schema/cart.schema';
-import { KhachHangs } from 'src/khach-hang/schema/khach-hang.schema';
+import { User } from 'src/users/schema/user.schema';
 
 export class CreateBillDto {
-  userName: KhachHangs;
-  userAddress: KhachHangs;
-  userEmail: KhachHangs;
-  userPhone: KhachHangs;
+  userName: User;
+  userAddress: User;
+  userEmail: User;
+  userPhone: User;
   product: Cart[];
   transport: string;
-  status: string;
   createTime: Date;
 }
