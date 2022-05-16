@@ -1,10 +1,6 @@
 import { Document } from 'mongoose';
 
-import {
-  Prop,
-  Schema,
-  SchemaFactory,
-} from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
 export type KhachHangDocument = KhachHangs & Document;
 @Schema()

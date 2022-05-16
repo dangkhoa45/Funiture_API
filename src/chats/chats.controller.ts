@@ -16,7 +16,7 @@ import { CreateChatDto } from './dto/create-chat.dto';
 import { UpdateChatDto } from './dto/update-chat.dto';
 
 @ApiTags('Chat')
-@Controller('chats')
+@Controller('chat')
 export class ChatsController {
   constructor(private readonly chatsService: ChatsService) {}
 

@@ -7,5 +7,4 @@ export class CreateSanPhamDto {
   price: string;
   tag: string;
   image: string;
-  quantity:string;
 }

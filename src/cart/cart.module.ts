@@ -6,19 +6,14 @@ import { MongooseModule } from '@nestjs/mongoose';
 
 import { CartController } from './cart.controller';
 import { CartService } from './cart.service';
-import {
-  Cart,
-  CartSchema,
-} from './schema/cart.schema';
+import { Cart, CartSchema } from './schema/cart.schema';
 
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: Cart.name, schema: CartSchema }]),
-    KhachHangModule,
-    SanPhamModule,
   ],
   controllers: [CartController],
   providers: [CartService],
   exports: [CartService],
 })
-export class CartModule { }
+export class CartModule {}

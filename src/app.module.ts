@@ -16,8 +16,8 @@ import { ChatsModule } from './chats/chats.module';
   imports: [
     KhachHangModule,
     MongooseModule.forRoot(
-      'mongodb+srv://user_45:khoa123456@cluster0.bwv88.mongodb.net/FUNITURE_API?retryWrites=true&w=majority',
-      ),
+      'mongodb+srv://truongb1805829:CaJznJZ7@restapicluster.wmetd.mongodb.net/FUNITURE_API?retryWrites=true&w=majority',
+    ),
     SanPhamModule,
     AuthModule,
     CartModule,
@@ -26,7 +26,6 @@ import { ChatsModule } from './chats/chats.module';
   ],
   controllers: [AppController],
   providers: [
-    AppService,
     {
       provide: APP_GUARD,
       useClass: JwtAuthGuard,

@@ -25,7 +25,7 @@ export class CartController {
     private readonly cartService: CartService,
     private readonly khachHangService: KhachHangService,
     private readonly sanphamService: SanPhamService,
-  ) { }
+  ) {}
 
   @Public()
   @Post()
@@ -47,7 +47,7 @@ export class CartController {
   }
 
   @Public()
-  @Get(":id")
+  @Get(':id')
   async findById(@Param('id') _id: string) {
     return await this.cartService.findById(_id);
   }

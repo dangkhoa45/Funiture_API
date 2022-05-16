@@ -44,7 +44,7 @@ export const storage = {
 @ApiTags('Khach Hang')
 @Controller('/khach-hang')
 export class KhachHangController {
-  constructor(private readonly khachHangService: KhachHangService) { }
+  constructor(private readonly khachHangService: KhachHangService) {}
 
   @Public()
   @Post()
@@ -54,7 +54,6 @@ export class KhachHangController {
     const hash = await bcrypt.hash(password, salt);
     createKhachHangDto.password = hash;
     const result = await this.khachHangService.create(createKhachHangDto);
-    console.log(result);
     return result;
 }
 
@@ -98,6 +97,7 @@ uploadFile(@Param('id') _id: string, @UploadedFile() file) {
   return this.khachHangService.uploadAVT(_id, file.filename);
 }
 
+<<<<<<< HEAD
 @Public()
 @Get('uploads/profileimages/:imagename')
 findProfileImage(@Param('imagename') imagename, @Res() res) {
@@ -106,4 +106,13 @@ findProfileImage(@Param('imagename') imagename, @Res() res) {
   );
 }
 
+=======
+  @Public()
+  @Get('uploads/profileimages/:imagename')
+  findProfileImage(@Param('imagename') imagename, @Res() res) {
+    return res.sendFile(
+      join(process.cwd(), 'uploads/profileimages/' + imagename),
+    );
+  }
+>>>>>>> 5e5801eb98ce38cc07deae95e6d9b58b997fb013
 }

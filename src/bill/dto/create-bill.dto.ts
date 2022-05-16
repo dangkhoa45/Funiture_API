@@ -5,7 +5,9 @@ export class CreateBillDto {
   userName: KhachHangs;
   userAddress: KhachHangs;
   userEmail: KhachHangs;
+  userPhone: KhachHangs;
   product: Cart[];
+  transport: string;
   status: string;
   createTime: Date;
 }

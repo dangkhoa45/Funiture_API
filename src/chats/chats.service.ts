@@ -5,10 +5,7 @@ import { InjectModel } from '@nestjs/mongoose';
 
 import { CreateChatDto } from './dto/create-chat.dto';
 import { UpdateChatDto } from './dto/update-chat.dto';
-import {
-  Chat,
-  ChatDocument,
-} from './schema/chat.schema';
+import { Chat, ChatDocument } from './schema/chat.schema';
 
 @Injectable()
 export class ChatsService {
@@ -24,7 +21,7 @@ export class ChatsService {
   }
 
   findOne(_id: string) {
-    return this.chatModel.findById({_id});
+    return this.chatModel.findById({ _id });
   }
 
   update(_id: string, updateChatDto: UpdateChatDto) {

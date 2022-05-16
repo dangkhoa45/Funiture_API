@@ -11,7 +11,7 @@ export class CreateCartDto {
 
   price: string;
 
-  item: number;
-
   createAt: Date;
+
+  image: string;
 }

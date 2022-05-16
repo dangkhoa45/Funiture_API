@@ -8,7 +8,7 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('Funitune example')
-    .setDescription('The funitune API description')
+    .setDescription('The funitune API description ')
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);

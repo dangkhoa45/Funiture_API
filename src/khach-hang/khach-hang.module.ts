@@ -3,10 +3,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 
 import { KhachHangController } from './khach-hang.controller';
 import { KhachHangService } from './khach-hang.service';
-import {
-  KhachHangs,
-  KhachHangSchema,
-} from './schema/khach-hang.schema';
+import { KhachHangs, KhachHangSchema } from './schema/khach-hang.schema';
 
 @Module({
   imports: [
@@ -18,4 +15,4 @@ import {
   providers: [KhachHangService],
   exports: [KhachHangService],
 })
-export class KhachHangModule { }
+export class KhachHangModule {}
