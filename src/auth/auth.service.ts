@@ -15,8 +15,9 @@ export class AuthService {
     const user = await this.userService.findInput(username);
     const salt = await bcrypt.genSalt();
     const hash = await bcrypt.hash(user.password, salt);
+    const validPass = await bcrypt.compare(pass, user.password);
     //console.log(khachHang);
-    if (user && user.password === pass) {
+    if (user && validPass === true) {
       //const { password, ...result } = khachHang;
       //console.log(result);
       const reqBody = {
@@ -35,9 +36,9 @@ export class AuthService {
     return null;
   }
 
-  async login(khachHang: any) {
+  async login(user: any) {
     return {
-      access_token: this.jwtService.sign(khachHang),
+      access_token: this.jwtService.sign(user),
     };
   }
 }

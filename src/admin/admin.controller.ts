@@ -100,16 +100,4 @@ export class AdminController {
       join(process.cwd(), 'uploads/profileimages/' + imagename),
     );
   }
-
-  @Public()
-  @Post(':id/add_cart/:cartId')
-  async addCart(@Param('id') _id: string, @Param('cartId') cartId: string) {
-    return this.adminService.addCart(_id, cartId);
-  }
-
-  @Public()
-  @Get(':id/cart')
-  getCart(@Param('id') _id: string) {
-    return this.adminService.getCart(_id);
-  }
 }
