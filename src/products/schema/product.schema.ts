@@ -67,6 +67,13 @@ export class Product {
     @Prop()
     sale: string;
 
+    @ApiProperty({
+        description: 'create a quantity of Product',
+        example: 0
+    })
+    @Prop()
+    quantity: number;
+
     @Prop()
     image: string;
 }

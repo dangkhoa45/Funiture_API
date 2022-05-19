@@ -34,28 +34,39 @@ export class CartService {
   }
 
   async findAll() {
-    return this.cartModel.find().populate('product').exec();
+    return this.cartModel.find().populate('product');
   }
 
   async update(_id: string, updateCartDto: UpdateCartDto) {
-    return await this.cartModel.findByIdAndUpdate(_id, { updateCartDto });
+    return await this.cartModel.findByIdAndUpdate(_id, updateCartDto);
   }
 
   async remove(_id: string) {
     return await this.cartModel.findByIdAndRemove({ _id });
   }
 
-  async addProduct(id: string, productId: string) {
-    const product = await this.productService.findOne(productId);
-    const customer = await this.cartModel.findById(id);
-    if (!customer.product || customer.product === null) {
-      customer.product = [];
-    }
-    product._id = productId;
-    customer.product?.push(product);
-    customer.quantity = customer.quantity + 1;
-    // console.log(cart)
-    customer.save()
-    return customer;
-  }
+  // async addProduct(_id: string, product: string) {
+  //   return await this.cartModel.findByIdAndUpdate(_id, { $push: { product: product } });
+  // }
+
+
+  // async addProduct(id: string, productId: string) {
+  //   const product = await this.productService.findOne(productId);
+  //   const customer = await this.cartModel.findById(id);
+  //   if (!customer.product || customer.product === null) {
+  //     customer.product = [];
+  //   }
+
+  //   product._id = productId;
+  //   // customer.quantity = quantity;
+  //   customer.product?.push(product);
+
+  //   // console.log(cart)
+  //   customer.save()
+  //   return customer;
+  // }
+
+  // async getCart(_id: string) {
+  //   return await this.cartModel.findById({ _id }).populate('product');
+  // }
 }

@@ -57,8 +57,9 @@ export class ProductsController {
 
   @Public()
   @Get(':id')
-  findOne(@Param('id') _id: string) {
-    return this.productService.findOne(_id);
+  async findById(@Param('id') _id: string) {
+     return this.productService.findOne(_id).exec();
+
   }
 
   @Public()

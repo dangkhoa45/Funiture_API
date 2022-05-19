@@ -60,7 +60,7 @@ export class User {
         description: 'create Cart by array Cart',
         example: []
     })
-    @Prop({ type: [{ type: mongoose.Schema.Types.Array, ref: 'Cart' }] })
+    @Prop({type: { type: mongoose.Schema.Types.Array, ref: 'Cart' }})
     cart: Cart[];
 }
 

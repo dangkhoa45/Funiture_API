@@ -69,14 +69,14 @@ export class UsersService {
       customer.cart = [];
     }
     cart._id = cartId;
-    customer.cart?.push(cart);
+    customer.cart.push(cart);
     // console.log(cart)
     customer.save()
     return customer;
   }
 
   async getCart(_id: string) {
-    return await this.userModel.findById({ _id });
+    return await this.userModel.findById({ _id }).populate('cart');
   }
 
   // async removeCart(id: string, cartId: string) {

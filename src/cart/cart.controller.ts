@@ -59,9 +59,4 @@ export class CartController {
     return await this.cartService.remove(_id);
   }
 
-  @Public()
-  @Post(':id/addProduct/:productId')
-  async addProduct(@Param('id') _id: string, @Param('productId') productId: string) {
-    return await this.cartService.addProduct(_id, productId);
-  }
 }

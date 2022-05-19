@@ -23,16 +23,10 @@ export class Cart {
 
   @ApiProperty({
     description: 'create product by id Product',
+    example: []
   })
-  @Prop({type: [{ type: mongoose.Schema.Types.Array, ref: 'Product' }]})
+  @Prop({ type: mongoose.Schema.Types.Array, ref: 'Product' })
   product: Product[];
-
-  @ApiProperty({
-    description: 'create a quantity of Product',
-    example: 0
-  })
-  @Prop()
-  quantity: number;
 
   @Prop({ type: Date, default: Date.now })
   createAt: Date;

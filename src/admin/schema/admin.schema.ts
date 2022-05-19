@@ -1,5 +1,4 @@
-import mongoose, { Document } from 'mongoose';
-import { Cart } from 'src/cart/schema/cart.schema';
+import { Document } from 'mongoose';
 
 import {
   Prop,
@@ -56,12 +55,6 @@ export class Admin {
     @Prop({ default: '' })
     avt: string;
 
-    @ApiProperty({
-        description: 'create Cart by array Cart',
-        example: []
-    })
-    @Prop({ type: [{ type: mongoose.Schema.Types.Array, ref: 'Cart' }] })
-    cart: Cart[];
 }
 
 export const AdminSchema = SchemaFactory.createForClass(Admin);
