@@ -13,7 +13,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import {
   User,
   UserDocument,
-} from './schema/user.schema';
+} from './schema/users.schema';
 
 @Injectable()
 export class UsersService {
@@ -49,7 +49,7 @@ export class UsersService {
 
   async update(_id: string, updateUser: UpdateUserDto) {
     return await this.userModel.findByIdAndUpdate(
-      { _id },
+      _id ,
       updateUser,
     );
   }

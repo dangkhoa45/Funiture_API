@@ -41,8 +41,8 @@ export const storage = {
   }),
 };
 
-@ApiTags('user')
-@Controller('/user')
+@ApiTags('users')
+@Controller('/users')
 export class UsersController {
   constructor(
     private readonly userService: UsersService,

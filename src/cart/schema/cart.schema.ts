@@ -1,6 +1,6 @@
 import mongoose, { Document } from 'mongoose';
 import { Product } from 'src/products/schema/product.schema';
-import { User } from 'src/users/schema/user.schema';
+import { User } from 'src/users/schema/users.schema';
 
 import {
   Prop,

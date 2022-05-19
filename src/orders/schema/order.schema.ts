@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import { Cart } from 'src/cart/schema/cart.schema';
-import { User } from 'src/users/schema/user.schema';
+import { User } from 'src/users/schema/users.schema';
 
 import {
   Prop,
