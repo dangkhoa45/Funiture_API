@@ -15,7 +15,7 @@ export type CartDocument = Cart & Document;
 export class Cart {
 
   @ApiProperty({
-    description: 'create khach hang by KhachHangs',
+    description: 'create User by id User',
     example: '6280aba80cd7f70f0595d11a'
   })
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })

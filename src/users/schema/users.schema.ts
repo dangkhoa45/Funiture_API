@@ -29,7 +29,7 @@ export class User {
         description: 'Create a email by User',
         example: 'dangkhoa@1234'
     })
-    @Prop({ required: true, unique: true, lowercase: true })
+    @Prop()
     email: string;
 
     @ApiProperty({
