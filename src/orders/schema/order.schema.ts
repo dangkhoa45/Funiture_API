@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { Cart } from 'src/cart/schema/cart.schema';
+import { Product } from 'src/products/schema/product.schema';
 import { User } from 'src/users/schema/users.schema';
 
 import {
@@ -21,8 +21,8 @@ export class Order {
   @ApiProperty({
     description: 'create cart by id Cart',
   })
-  @Prop({ type: mongoose.Schema.Types.Array, ref: 'Cart' })
-  cart: Cart[];
+  @Prop({ type: mongoose.Schema.Types.Array, ref: 'Product' })
+  product: Product[];
 
   @ApiProperty({
     description: 'transport',

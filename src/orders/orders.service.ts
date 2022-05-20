@@ -1,5 +1,5 @@
 import { Model } from 'mongoose';
-import { CartService } from 'src/cart/cart.service';
+import { ProductsService } from 'src/products/products.service';
 
 import {
   forwardRef,
@@ -18,8 +18,8 @@ import {
 @Injectable()
 export class OrdersService {
   constructor(@InjectModel(Order.name) private orderModel: Model<OrderDocument>,
-  @Inject(forwardRef(() => CartService)) 
-  private cartService: CartService
+  @Inject(forwardRef(() => ProductsService)) 
+  private productSerever: ProductsService
   ) { }
 
   create(data: CreateOrderDto) {
@@ -43,14 +43,14 @@ export class OrdersService {
     return this.orderModel.findByIdAndRemove({ _id });
   }
 
-  async addCart(id: string, cartId: string) {
-    const cart = await this.cartService.findById(cartId);
+  async addProduct(id: string, productId: string) {
+    const product = await this.productSerever.findOne(productId);
     const customer = await this.orderModel.findById(id);
-    if (!customer.cart || customer.cart === null) {
-      customer.cart = [];
+    if (!customer.product || customer.product === null) {
+      customer.product = [];
     }
-    cart._id = cart;
-    customer.cart?.push(cart);
+    product._id = productId;
+    customer.product?.push(product);
     // console.log(cart)
     customer.save()
     return customer;

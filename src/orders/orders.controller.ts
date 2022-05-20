@@ -52,7 +52,7 @@ export class OrdersController {
 
   @Public()
   @Post(':id/addCart/:cartId')
-  async addCart(@Param('id') _id: string, @Param('cartId') cartId: string) {
-    return await this.ordersService.addCart(_id, cartId);
+  async addProduct(@Param('id') _id: string, @Param('cartId') cartId: string) {
+    return await this.ordersService.addProduct(_id, cartId);
   }
 }

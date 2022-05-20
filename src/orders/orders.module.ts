@@ -1,4 +1,4 @@
-import { CartModule } from 'src/cart/cart.module';
+import { ProductsModule } from 'src/products/products.module';
 
 import {
   forwardRef,
@@ -18,7 +18,7 @@ import {
     MongooseModule.forFeature([
       { name: Order.name, schema: OrderSchema },
     ]),
-    forwardRef(() => CartModule)
+    forwardRef(() => ProductsModule)
   ],
   controllers: [OrdersController],
   providers: [OrdersService]
